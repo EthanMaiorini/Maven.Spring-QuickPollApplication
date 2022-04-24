@@ -1,4 +1,4 @@
-# Poll Application
+# io.zipcoder.tc_spring_poll_application.Poll Application
 * **Purpose**
 	* to demonstrate the basic functionality of the [Spring Framework](https://spring.io/)
 	* to demonstrate API testing via [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
@@ -9,11 +9,11 @@
 * Create a sub package of `io.zipcoder.tc_spring_poll_application` named `domain`.
 
 
-## Part 1.1 - Create class `Option`
+## Part 1.1 - Create class `io.zipcoder.tc_spring_poll_application.Option`
 
-* Create an `Option` class in the `domain` sub-package.
-* `Option` class signature is annotated with `@Entity`
-* `Option` has an `id` instance variable of type `Long`
+* Create an `io.zipcoder.tc_spring_poll_application.Option` class in the `domain` sub-package.
+* `io.zipcoder.tc_spring_poll_application.Option` class signature is annotated with `@Entity`
+* `io.zipcoder.tc_spring_poll_application.Option` has an `id` instance variable of type `Long`
 	* `id` should be `annotated` with
 		* `@Id`
 			* denotes primary key of this entity
@@ -23,28 +23,28 @@
 			* specifies mapped column for a persistent property or field
 			* without `@Column` specified, the framework assumes the field's variable-name is the persistent property name.
 
-* `Option` has a `value` instance variable of type `String`
+* `io.zipcoder.tc_spring_poll_application.Option` has a `value` instance variable of type `String`
 	* `value` should be `annotated` with
 		* `@Column(name = "OPTION_VALUE")`
 
 * Create a `getter` and `setter` for each of the respective instance variables.
 
 
-## Part 1.2 - Create class `Poll`
+## Part 1.2 - Create class `io.zipcoder.tc_spring_poll_application.Poll`
 
-* Create a `Poll` class in the `domain` sub-package.
-* `Poll` class signature is annotated with `@Entity`
-* `Poll` has an `id` instance variable of type `Long`
+* Create a `io.zipcoder.tc_spring_poll_application.Poll` class in the `domain` sub-package.
+* `io.zipcoder.tc_spring_poll_application.Poll` class signature is annotated with `@Entity`
+* `io.zipcoder.tc_spring_poll_application.Poll` has an `id` instance variable of type `Long`
 	* `id` should be `annotated` with
 		* `@Id`
 		* `@GeneratedValue`
 		* `Column(name = "POLL_ID")`
 
-* `Poll` has a `question` instance variable of type `String`
+* `io.zipcoder.tc_spring_poll_application.Poll` has a `question` instance variable of type `String`
 	* `question` should be `annotated` with
 		* `@Column(name = "QUESTION")`
 
-* `Poll` has an `options` instance variable of type `Set` of `Option`
+* `io.zipcoder.tc_spring_poll_application.Poll` has an `options` instance variable of type `Set` of `io.zipcoder.tc_spring_poll_application.Option`
 	* `options` should be `annotated` with
 		* `@OneToMany(cascade = CascadeType.ALL)`
 		* `@JoinColumn(name = "POLL_ID")`
@@ -53,17 +53,17 @@
 * Create a `getter` and `setter` for each of the respective instance variables.
 
 
-## Part 1.3 - Create class `Vote`
+## Part 1.3 - Create class `io.zipcoder.tc_spring_poll_application.Vote`
 
-* Create a `Vote` class in the `domain` sub-package.
-* `Vote` class signature is annotated with `@Entity`
-* `Vote` has an `id` instance variable of type `Long`
+* Create a `io.zipcoder.tc_spring_poll_application.Vote` class in the `domain` sub-package.
+* `io.zipcoder.tc_spring_poll_application.Vote` class signature is annotated with `@Entity`
+* `io.zipcoder.tc_spring_poll_application.Vote` has an `id` instance variable of type `Long`
 	* `id` should be `annotated` with
 		* `@Id`
 		* `@GeneratedValue`
 		* `Column(name = "VOTE_ID")`
 
-* `Vote` has a `option` instance variable of type `Option`
+* `io.zipcoder.tc_spring_poll_application.Vote` has a `option` instance variable of type `io.zipcoder.tc_spring_poll_application.Option`
 	* `option` should be `annotated` with
 		* `@ManyToOne`
 		* `@JoinColumn(name = "OPTION_ID")`
@@ -82,19 +82,19 @@
 ## Part 2.1 - Create interface `OptionRepository`
 
 * Create an `OptionRepository` interface in the `repositories` subpackage.
-* `OptionRepository` is a subclass of `CrudRepository<Option, Long>`
+* `OptionRepository` is a subclass of `CrudRepository<io.zipcoder.tc_spring_poll_application.Option, Long>`
 
 
 ## Part 2.2 - Create interface `PollRepository`
 
 * Create a `PollRepository` interface in the `repositories` subpackage.
-* `PollRepository` is a subclass of `CrudRepository<Poll, Long>`
+* `PollRepository` is a subclass of `CrudRepository<io.zipcoder.tc_spring_poll_application.Poll, Long>`
 
 
 ## Part 2.3 - Create interface `VoteRepository`
 
 * Create a `VoteRepository` interface in the `repositories` subpackage.
-* `VoteRepository` is a subclass of `CrudRepository<Vote, Long>`
+* `VoteRepository` is a subclass of `CrudRepository<io.zipcoder.tc_spring_poll_application.Vote, Long>`
 
 # Part 3 - Controller Implementation
 
@@ -120,15 +120,15 @@
 
 ```java
 @RequestMapping(value="/polls", method= RequestMethod.GET)
-public ResponseEntity<Iterable<Poll>> getAllPolls() {
-    Iterable<Poll> allPolls = pollRepository.findAll();
+public ResponseEntity<Iterable<io.zipcoder.tc_spring_poll_application.Poll>> getAllPolls() {
+    Iterable<io.zipcoder.tc_spring_poll_application.Poll> allPolls = pollRepository.findAll();
     return new ResponseEntity<>(allPolls, HttpStatus.OK);
 }
 ```
 
 * The method above begins with reading all of the polls using the `PollRepository`.
-* We then create an instance of `ResponseEntity` and pass in `Poll` data and the `HttpStatus.OK` status value.
-* The `Poll` data becomes part of the response body and `OK` (code 200) becomes the response status code.
+* We then create an instance of `ResponseEntity` and pass in `io.zipcoder.tc_spring_poll_application.Poll` data and the `HttpStatus.OK` status value.
+* The `io.zipcoder.tc_spring_poll_application.Poll` data becomes part of the response body and `OK` (code 200) becomes the response status code.
 
 
 
@@ -150,23 +150,23 @@ public ResponseEntity<Iterable<Poll>> getAllPolls() {
 
 ```java
 @RequestMapping(value="/polls", method=RequestMethod.POST)
-public ResponseEntity<?> createPoll(@RequestBody Poll poll) {
+public ResponseEntity<?> createPoll(@RequestBody io.zipcoder.tc_spring_poll_application.Poll poll) {
         poll = pollRepository.save(poll);
         return new ResponseEntity<>(null, HttpStatus.CREATED);
 }
 ```
 
 * Take note that the method
-	* has a parameter of type `@RequestBody Poll poll`
-		* `@RequestBody` tells Spring that the entire request body needs to be converted to an instance of Poll
-	* delegates the `Poll` persistence to `PollRepository`’s save method
+	* has a parameter of type `@RequestBody io.zipcoder.tc_spring_poll_application.Poll poll`
+		* `@RequestBody` tells Spring that the entire request body needs to be converted to an instance of io.zipcoder.tc_spring_poll_application.Poll
+	* delegates the `io.zipcoder.tc_spring_poll_application.Poll` persistence to `PollRepository`’s save method
 		* `poll = pollRepository.save(poll);`
 
 
 
 ### Part 3.1.4 - Modify `createPoll`
 
-* Best practice is to convey the URI to the newly created resource using the Location HTTP header via Spring's `ServletUriComponentsBuilder` utility class. This will ensure that the client has some way of knowing the URI of the newly created Poll.
+* Best practice is to convey the URI to the newly created resource using the Location HTTP header via Spring's `ServletUriComponentsBuilder` utility class. This will ensure that the client has some way of knowing the URI of the newly created io.zipcoder.tc_spring_poll_application.Poll.
 
 ```java
 URI newPollUri = ServletUriComponentsBuilder
@@ -190,7 +190,7 @@ URI newPollUri = ServletUriComponentsBuilder
 ```java
 @RequestMapping(value="/polls/{pollId}", method=RequestMethod.GET)
 public ResponseEntity<?> getPoll(@PathVariable Long pollId) {
-	Poll p = pollRepository.findOne(pollId);
+	io.zipcoder.tc_spring_poll_application.Poll p = pollRepository.findOne(pollId);
 	return new ResponseEntity<> (p, HttpStatus.OK);
 }
 ```
@@ -202,9 +202,9 @@ public ResponseEntity<?> getPoll(@PathVariable Long pollId) {
 
 ```java
 @RequestMapping(value="/polls/{pollId}", method=RequestMethod.PUT)
-public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long pollId) {
+public ResponseEntity<?> updatePoll(@RequestBody io.zipcoder.tc_spring_poll_application.Poll poll, @PathVariable Long pollId) {
         // Save the entity
-        Poll p = pollRepository.save(poll);
+        io.zipcoder.tc_spring_poll_application.Poll p = pollRepository.save(poll);
         return new ResponseEntity<>(HttpStatus.OK);
 }
 ```
@@ -223,7 +223,7 @@ public ResponseEntity<?> deletePoll(@PathVariable Long pollId) {
 ```
 
 
-### Part 3.1.8 - Test Poll Creating Capabilities
+### Part 3.1.8 - Test io.zipcoder.tc_spring_poll_application.Poll Creating Capabilities
 
 * Restart the QuickPoll application.
 * Use Postman to execute a `POST` to `http://localhost:8080/polls/` whose request body is the `JSON` object below.
@@ -274,35 +274,37 @@ public ResponseEntity<?> deletePoll(@PathVariable Long pollId) {
 
 * Following the principles used to create `PollController`, we implement the `VoteController` class.
 * Below is the code for the `VoteController` class along with the functionality to create a vote.
-* The `VoteController` uses an injected instance of `VoteRepository` to perform `CRUD` operations on Vote instances.
+* The `VoteController` uses an injected instance of `VoteRepository` to perform `CRUD` operations on io.zipcoder.tc_spring_poll_application.Vote instances.
 
 ```java
+import io.zipcoder.tc_spring_poll_application.Vote;
+
 @RestController
 public class VoteController {
 
-    private VoteRepository voteRepository;
-    
-    @Autowired
-    public VoteController(VoteRepository voteRepository) {
-    	this.voteRepository = voteRepository;
-    }
+	private VoteRepository voteRepository;
 
-    @RequestMapping(value = "/polls/{pollId}/votes", method = RequestMethod.POST)
-    public ResponseEntity<?> createVote(@PathVariable Long pollId, @RequestBody Vote
-            vote) {
-        vote = voteRepository.save(vote);
-        // Set the headers for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setLocation(ServletUriComponentsBuilder.
-                fromCurrentRequest().path("/{id}").buildAndExpand(vote.getId()).toUri());
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
-    }
+	@Autowired
+	public VoteController(VoteRepository voteRepository) {
+		this.voteRepository = voteRepository;
+	}
+
+	@RequestMapping(value = "/polls/{pollId}/votes", method = RequestMethod.POST)
+	public ResponseEntity<?> createVote(@PathVariable Long pollId, @RequestBody Vote
+			vote) {
+		vote = voteRepository.save(vote);
+		// Set the headers for the newly created resource
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setLocation(ServletUriComponentsBuilder.
+				fromCurrentRequest().path("/{id}").buildAndExpand(vote.getId()).toUri());
+		return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+	}
 }
 ```
 
 ### Part 3.2.1 - Testing `VoteController`
 
-* To test the voting capabilities, `POST` a new Vote to the `/polls/1/votes` endpoint with the option object expressed in `JSON` below.
+* To test the voting capabilities, `POST` a new io.zipcoder.tc_spring_poll_application.Vote to the `/polls/1/votes` endpoint with the option object expressed in `JSON` below.
 * On successful request execution, you will see a Location response header with value http://localhost:8080/polls/1/votes/1.
 
 ```JSON
@@ -318,16 +320,18 @@ public class VoteController {
 * To ensure we can get votes for a given poll, we must add the code below to our `VoteRepository`.
 
 ```java
+import io.zipcoder.tc_spring_poll_application.Vote;
+
 public interface VoteRepository extends CrudRepository<Vote, Long> {
-    @Query(value = "SELECT v.* " +
-            "FROM Option o, Vote v " +
-            "WHERE o.POLL_ID = ?1 " +
-            "AND v.OPTION_ID = o.OPTION_ID", nativeQuery = true)
-    public Iterable<Vote> findVotesByPoll(Long pollId);
+	@Query(value = "SELECT v.* " +
+			"FROM io.zipcoder.tc_spring_poll_application.Option o, io.zipcoder.tc_spring_poll_application.Vote v " +
+			"WHERE o.POLL_ID = ?1 " +
+			"AND v.OPTION_ID = o.OPTION_ID", nativeQuery = true)
+	public Iterable<Vote> findVotesByPoll(Long pollId);
 }
 ```
 
-* The custom finder method `findVotesByPoll` takes the `ID` of the `Poll` as its parameter.
+* The custom finder method `findVotesByPoll` takes the `ID` of the `io.zipcoder.tc_spring_poll_application.Poll` as its parameter.
 * The `@Query` annotation on this method takes a native SQL query along with the `nativeQuery` flag set to `true`.
 * At runtime, Spring Data JPA replaces the `?1` placeholder with the passed-in `pollId` parameter value.
 
@@ -339,7 +343,7 @@ public interface VoteRepository extends CrudRepository<Vote, Long> {
 
 ```java
 @RequestMapping(value="/polls/votes", method=RequestMethod.GET)
-public Iterable<Vote> getAllVotes() {
+public Iterable<io.zipcoder.tc_spring_poll_application.Vote> getAllVotes() {
 	return voteRepository.findAll();
 }
 ```
@@ -348,7 +352,7 @@ public Iterable<Vote> getAllVotes() {
 
 ```java
 @RequestMapping(value="/polls/{pollId}/votes", method=RequestMethod.GET)
-public Iterable<Vote> getVote(@PathVariable Long pollId) {
+public Iterable<io.zipcoder.tc_spring_poll_application.Vote> getVote(@PathVariable Long pollId) {
 	return voteRepository.findById(pollId);
 }
 ```
@@ -423,24 +427,26 @@ public class VoteResult {
 * Following the principles used in creating the `PollController` and `VoteController`, we create a new `ComputeResultController` class
 
 ```java
+import io.zipcoder.tc_spring_poll_application.Vote;
+
 @RestController
 public class ComputeResultController {
-    
-    private VoteRepository voteRepository;
-    
-    @Autowired
-    public ComputeResultController(VoteRepository voteRepository) {
-    	this.voteRepository = voteRepository;
-    }
 
-    @RequestMapping(value = "/computeresult", method = RequestMethod.GET)
-    public ResponseEntity<?> computeResult(@RequestParam Long pollId) {
-        VoteResult voteResult = new VoteResult();
-        Iterable<Vote> allVotes = voteRepository.findVotesByPoll(pollId);
+	private VoteRepository voteRepository;
 
-        //TODO: Implement algorithm to count votes
-        return new ResponseEntity<VoteResult>(voteResult, HttpStatus.OK);
-    }
+	@Autowired
+	public ComputeResultController(VoteRepository voteRepository) {
+		this.voteRepository = voteRepository;
+	}
+
+	@RequestMapping(value = "/computeresult", method = RequestMethod.GET)
+	public ResponseEntity<?> computeResult(@RequestParam Long pollId) {
+		VoteResult voteResult = new VoteResult();
+		Iterable<Vote> allVotes = voteRepository.findVotesByPoll(pollId);
+
+		//TODO: Implement algorithm to count votes
+		return new ResponseEntity<VoteResult>(voteResult, HttpStatus.OK);
+	}
 ```
 
 
@@ -510,10 +516,10 @@ public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundExcepti
 
 Now it's time to make sure that all objects persisted to the database actually contain valid values. Use the `org.hibernate.validator.constraints.NotEmpty` and `javax.validation.constraints.Size` and `javax.validation.Valid` annotations for validation.
 
-- In the `Poll` class:
+- In the `io.zipcoder.tc_spring_poll_application.Poll` class:
   - `options` should be `@Size(min=2, max = 6)`
   - `question` should be `@NotEmpty`
-- To enforce these validations, add `@Valid` annotations to Poll objects in `RequestMapping`-annotated controller methods (there should be 2)
+- To enforce these validations, add `@Valid` annotations to io.zipcoder.tc_spring_poll_application.Poll objects in `RequestMapping`-annotated controller methods (there should be 2)
 
 ## Part 5.5 - Customizing validation errors
 
@@ -623,17 +629,17 @@ Size.poll.options=Options must be greater than {2} and less than {1}
 
 
 
-## Part 6.1 - Load Dummy Poll Data
+## Part 6.1 - Load Dummy io.zipcoder.tc_spring_poll_application.Poll Data
 
 * Create a `src/main/resource/import.sql` file with _DML statements_ for populating the database upon bootstrap. The `import.sql` should insert at least 15 polls, each with 3 or more options.
 	* Below is an example of `SQL` statements for creating a single poll with only one option.
 	
-		* Poll Creation
+		* io.zipcoder.tc_spring_poll_application.Poll Creation
 		
 			```sql
 			insert into poll (poll_id, question) values (1, 'What is your favorite color?');
 			```
-		* Option Creation
+		* io.zipcoder.tc_spring_poll_application.Option Creation
 	
 			```sql
 			insert into option (option_id, option_value, poll_id) values (1, 'Red', 1);
