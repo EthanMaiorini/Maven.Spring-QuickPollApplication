@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
+import java.net.URI;
 
 
 @RestController
@@ -31,7 +31,8 @@ public class VoteController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(ServletUriComponentsBuilder.
                 fromCurrentRequest().path("/{id}").buildAndExpand(vote.getId()).toUri());
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+
+        return new ResponseEntity<>(vote,responseHeaders , HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/polls/votes", method=RequestMethod.GET)
